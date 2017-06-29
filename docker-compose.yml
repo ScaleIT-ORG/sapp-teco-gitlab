@@ -1,0 +1,27 @@
+web:
+  image: 'gitlab/gitlab-ce:latest'
+  restart: always
+  hostname: 'gitlab.example.com'
+  environment:
+    GITLAB_OMNIBUS_CONFIG: |
+      external_url 'http://gitlab.example.com'
+      gitlab_rails['gitlab_shell_ssh_port'] = 11   # we changed forwarding of ssh port, so we need to specify it here
+      # for making imports from gitlab possible
+      # gitlab_rails['omniauth_providers'] = [{    
+      #"name" => "gitlab", 
+      #"app_id" => "685a722798ac3e7cb1c0c0fa6e91b6efc59e3477b2773449011740b7cb67a4a2",          #Application Id
+      #"app_secret" => "4a11b3de23dd565c68102c3c2b1f32a59c42e155c00058f6df2543e68a1ab6ca",      #Secret
+      #"args" => { "scope" => "api" }}]
+      unicorn['worker_timeout'] = 120                                                           #to reduce effect of network glitches
+      unicorn['worker_processes'] = 3      
+      
+
+      # Add any other gitlab.rb configuration here, each on its own line
+  ports:
+    - '80:80'
+    - '443:443'
+    - '11:22'
+  volumes:
+    - '/srv/gitlab/config:/etc/gitlab'
+    - '/srv/gitlab/logs:/var/log/gitlab'
+    - '/srv/gitlab/data:/var/opt/gitlab'
