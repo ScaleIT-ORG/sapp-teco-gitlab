@@ -14,8 +14,8 @@ web:
 
       # Add any other gitlab.rb configuration here, each on its own line
   ports:
-    - '80:80'
-    - '443:443'
+    - '81:80'
+    - '445:443'
     - '11:22'
   volumes:
     - '/srv/gitlab/config:/etc/gitlab'
