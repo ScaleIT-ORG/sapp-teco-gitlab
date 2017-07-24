@@ -6,26 +6,22 @@ services:
         restart: always
         hostname: 'gitlab.example.com' 
         environment:
-            VIRTUAL_HOST: ${VIRTUAL_HOST_NAME}
-            VIRTUAL_PORT: ${VIRTUAL_PORT_NUMBER}
-            LETSENCRYPT_HOST: ${VIRTUAL_HOST_NAME}
-            LETSENCRYPT_EMAIL: ${SSL_ADMIN_MAIL}
+             VIRTUAL_HOST
+             VIRTUAL_PORT
+             LETSENCRYPT_HOS: ${VIRTUAL_HOST}
+             LETSENCRYPT_EMAIL
             # Add any other gitlab.rb configuration here, each on its own line
             GITLAB_OMNIBUS_CONFIG: |            
                 external_url 'http://gitlab.example.com'    
                 gitlab_rails['gitlab_shell_ssh_port'] = 11             #forwarding of ssh port was changed , so it need to be specified here
                 unicorn['worker_timeout'] = 120                        #to reduce effect of network glitches
                 unicorn['worker_processes'] = 3
-                 
-            
+              
         expose:
             - '80'
             - '443'
             - '22'
-       ports:
-            - '80:80'
-            - '443:443'
-            - '11:22'   
+
         volumes:
             - '/srv/gitlab/config:/etc/gitlab'
             - '/srv/gitlab/logs:/var/log/gitlab'
