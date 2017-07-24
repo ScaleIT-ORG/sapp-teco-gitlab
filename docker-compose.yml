@@ -1,32 +1,31 @@
 #https://docs.gitlab.com/omnibus/docker/README.html#pre-configure-docker-container was used as base for this file
 version: '3'
 services: 
-    gitlab:
-        image: 'gitlab/gitlab-ce:latest'
-        restart: always
-        hostname: 'gitlab.example.com' #
-        environment:
-            - VIRTUAL_HOST
-            - VIRTUAL_PORT
-            - LETSENCRYPT_HOST: ${VIRTUAL_HOST}
-            - LETSENCRYPT_EMAIL
-            # Add any other gitlab.rb configuration here, each on its own line
-            GITLAB_OMNIBUS_CONFIG: |            
-                external_url 'http://gitlab.example.com'    
-                gitlab_rails['gitlab_shell_ssh_port'] = 11             #forwarding of ssh port was changed , so it need to be specified here
-                unicorn['worker_timeout'] = 120                        #to reduce effect of network glitches
-                unicorn['worker_processes'] = 3 
-            
-        expose:
-            - 80
-            - 443
-            - 22   
-        volumes:
-            - '/srv/gitlab/config:/etc/gitlab'
-            - '/srv/gitlab/logs:/var/log/gitlab'
-            - '/srv/gitlab/data:/var/opt/gitlab'
-        networks:
-            - nginx-proxy
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    restart: always
+    hostname: 'gitlab.example.com' 
+    environment:
+       VIRTUAL_HOST: ${VIRTUAL_HOST}
+       VIRTUAL_PORT: ${VIRTUAL_PORT}
+       LETSENCRYPT_HOST: ${VIRTUAL_HOST}
+       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}  
+       # Add any other gitlab.rb configuration here, each on its own line          
+       GITLAB_OMNIBUS_CONFIG: |             
+         external_url 'http://gitlab.example.com'  
+         gitlab_rails['gitlab_shell_ssh_port'] = 11       #forwarding of ssh port was changed , so it need to be specified here
+         unicorn['worker_timeout'] = 120                  #to reduce effect of network glitches
+         unicorn['worker_processes'] = 3      
+    expose:
+      - 80
+      - 443
+      - 22   
+    volumes:
+      - '/srv/gitlab/config:/etc/gitlab'
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
+    networks:
+      - nginx-proxy
 networks:
-    nginx-proxy:
-        external: true
+  nginx-proxy:
+    external: true
