@@ -3,15 +3,15 @@ To run the GitLab Docker image, which is a monolithic image of GitLab running al
 
 ##Requirements:
 * **full description here** https://docs.gitlab.com/ce/install/requirements.html
-* Memory: 
+### Memory: 
 1. size of a GitLab image: 1.16GB
 2. 4GB RAM is the recommended memory size for all installations and supports up to 100 users
 3. at least 2GB of swap, even if there is currently enough available RAM. Having swap will help reduce the chance of errors occurring if available 
 memory changes.
 4. size of the repos
-* CPU: 
+### CPU: 
 1. 2 cores is the recommended number of cores and supports up to 500 users
-* Ports:
+### Ports:
 1. 80
 2. 11
 3. 443
