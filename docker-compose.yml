@@ -1,4 +1,4 @@
-#https://docs.gitlab.com/omnibus/docker/README.html#pre-configure-docker-container was used as base for this file
+#https://docs.gitlab.com/omnibus/docker/README.html was used as base for this file
 version: '3'
 services:
   gitlab:
@@ -15,14 +15,15 @@ services:
          external_url 'http://gitlab.staging.teco.edu'
          unicorn['worker_timeout'] = 120                  #to reduce effect of network glitches
          unicorn['worker_processes'] = 3  
-         nginx['listen_port'] = 80     
-
+         nginx['listen_port'] = 80
+         nginx['redirect_http_to_https'] = true
     expose:
       - '80'
+
     volumes:
-      - '/srv/gitlab/config:/etc/gitlab'
-      - '/srv/gitlab/logs:/var/log/gitlab'
-      - '/srv/gitlab/data:/var/opt/gitlab'
+      - '/srv/business-essentials/teco_gitlab/config:/etc/gitlab'
+      - '/srv/business-essentials/teco_gitlab/logs:/var/log/gitlab'
+      - '/srv/business-essentials/teco_gitlab/data:/var/opt/gitlab'
     networks:
       - nginx-proxy
 networks:
