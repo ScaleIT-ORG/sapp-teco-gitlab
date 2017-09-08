@@ -2,7 +2,7 @@
 To run the GitLab Docker image, which is a monolithic image of GitLab running all the necessary services on a single container,using docker-compose.
 
 ## Requirements:
-* **full description here** https://docs.gitlab.com/ce/install/requirements.html
+* [full description here](https://docs.gitlab.com/ce/install/requirements.html)
 
 ### Memory: 
 1. size of a GitLab image: 1.16GB
