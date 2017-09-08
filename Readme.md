@@ -37,6 +37,10 @@ memory changes.
 </p>
 * Then you schould wait approximately 5 minutes.
 
+## Backups
+
+* [Documentation](https://docs.gitlab.com/omnibus/settings/backups.html)
+
 
 
 
