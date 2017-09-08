@@ -40,24 +40,6 @@ services:
     networks:
       - nginx-proxy
       
-  postgresql:
-    restart: always
-    image: postgres:9.6.2-alpine
-    environment:
-      - POSTGRES_USER=gitlab
-      - POSTGRES_PASSWORD=gitlab
-      - POSTGRES_DB=gitlabhq_production
-    volumes:
-      - '/srv/business-essentials/teco_gitlab/postgresql:/var/lib/postgresql'
-    networks:
-      - nginx-proxy
-  redis:
-    restart: always
-    image: redis:3.0.7-alpine
-    volumes:
-      - '/srv/business-essentials/teco_gitlab/redis:/var/lib/redis'
-    networks:
-      - nginx-proxy
 networks:
   nginx-proxy:
     external: true
