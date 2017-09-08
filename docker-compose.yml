@@ -5,6 +5,9 @@ services:
     image: gitlab/gitlab-ce:latest
     restart: always
     hostname: 'gitlab.staging.teco.edu'
+    links:
+    - postgresql:postgresql
+    - redis:redis
     environment:
        VIRTUAL_HOST: ${VIRTUAL_HOST}
        VIRTUAL_PORT: ${VIRTUAL_PORT}
@@ -12,19 +15,48 @@ services:
        LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
        # Add any other gitlab.rb configuration here, each on its own line
        GITLAB_OMNIBUS_CONFIG: |
-         external_url 'http://gitlab.staging.teco.edu'
-         unicorn['worker_timeout'] = 120                  #to reduce effect of network glitches
-         unicorn['worker_processes'] = 3  
-         nginx['listen_port'] = 80
-         nginx['redirect_http_to_https'] = true
+        postgresql['enable'] = false
+        gitlab_rails['db_username'] = "gitlab"
+        gitlab_rails['db_password'] = "gitlab"
+        gitlab_rails['db_host'] = "postgresql"
+        gitlab_rails['db_port'] = "5432"
+        gitlab_rails['db_database'] = "gitlabhq_production"
+        gitlab_rails['db_adapter'] = 'postgresql'
+        gitlab_rails['db_encoding'] = 'utf8'
+        redis['enable'] = false
+        gitlab_rails['redis_host'] = 'redis'
+        gitlab_rails['redis_port'] = '6379'
+        external_url 'http://gitlab.staging.teco.edu'
+        unicorn['worker_timeout'] = 120                        #to reduce effect of network glitches
+        unicorn['worker_processes'] = 3  
+        nginx['listen_port'] = 80
+        nginx['redirect_http_to_https'] = true
     expose:
       - '80'
-
     volumes:
       - '/srv/business-essentials/teco_gitlab/config:/etc/gitlab'
       - '/srv/business-essentials/teco_gitlab/logs:/var/log/gitlab'
       - '/srv/business-essentials/teco_gitlab/data:/var/opt/gitlab'
     networks:
+      - nginx-proxy
+      
+postgresql:
+  restart: always
+  image: postgres:9.6.2-alpine
+  environment:
+    - POSTGRES_USER=gitlab
+    - POSTGRES_PASSWORD=gitlab
+    - POSTGRES_DB=gitlabhq_production
+  volumes:
+     - '/srv/business-essentials/teco_gitlab/postgresql:/var/lib/postgresql'
+  networks:
+      - nginx-proxy
+redis:
+  restart: always
+  image: redis:3.0.7-alpine
+  volumes:
+     - /srv/business-essentials/teco_gitlab/redis:/var/lib/redis
+  networks:
       - nginx-proxy
 networks:
   nginx-proxy:
