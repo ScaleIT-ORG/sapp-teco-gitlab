@@ -22,7 +22,7 @@ services:
        #nginx['proxy_set_headers'] = {
        #"X-Forwarded-Proto" => "https",
        #"X-Forwarded-Ssl" => "on"
-}
+       #}
     expose:
       - '80'
     volumes:
