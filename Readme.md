@@ -1,7 +1,7 @@
-#Creating GitLab image
+# Creating GitLab image
 To run the GitLab Docker image, which is a monolithic image of GitLab running all the necessary services on a single container,using docker-compose.
 
-##Requirements:
+## Requirements:
 * **full description here** https://docs.gitlab.com/ce/install/requirements.html
 
 ### Memory: 
@@ -21,9 +21,21 @@ memory changes.
 
 ## Installing
 1. docker-compose up -d 
-2. When you browse to gitlab.staging.teco.edu you'll see the GitLab login page
+2. Type in browser gitlab.staging.teco.edu and you'll see the GitLab login page
 3. You registrate there
 4. Create projects and use great GitLab features
+
+## Problems that might happen
+
+* If while connecting to gitlab.staging.teco.edu you see in browser first this :  
+ <p align="left">
+  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/kristkat/pictures/master/502_1.png' />
+</p> 
+* Then in some time this :
+<p align="left">
+  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/kristkat/pictures/master/502_2.png' />
+</p>
+* Then you schould wait approximately 5 minutes.
 
 
 

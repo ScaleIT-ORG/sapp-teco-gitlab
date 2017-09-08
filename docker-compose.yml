@@ -12,22 +12,17 @@ services:
        LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
        # Add any other gitlab.rb configuration here, each on its own line
        GITLAB_OMNIBUS_CONFIG: |
-        postgresql['enable'] = false
-        gitlab_rails['db_username'] = "gitlab"
-        gitlab_rails['db_password'] = "gitlab"
-        gitlab_rails['db_host'] = "postgresql"
-        gitlab_rails['db_port'] = "5432"
-        gitlab_rails['db_database'] = "gitlabhq_production"
-        gitlab_rails['db_adapter'] = 'postgresql'
-        gitlab_rails['db_encoding'] = 'utf8'
-        redis['enable'] = false
-        gitlab_rails['redis_host'] = 'redis'
-        gitlab_rails['redis_port'] = '6379'
         external_url 'http://gitlab.staging.teco.edu'
-        unicorn['worker_timeout'] = 120                        #to reduce effect of network glitches
+        gitlab_rails['git_timeout'] = 600
+        nginx['keepalive_timeout'] = 300
+        unicorn['worker_timeout'] = 300                        #to reduce effect of network glitches
         unicorn['worker_processes'] = 3  
         nginx['listen_port'] = 80
-        nginx['redirect_http_to_https'] = true
+       # nginx['redirect_http_to_https'] = true
+       #nginx['proxy_set_headers'] = {
+       #"X-Forwarded-Proto" => "https",
+       #"X-Forwarded-Ssl" => "on"
+}
     expose:
       - '80'
     volumes:
