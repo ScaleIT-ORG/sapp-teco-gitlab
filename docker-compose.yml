@@ -58,6 +58,6 @@ services:
       - '/srv/business-essentials/teco_gitlab/redis:/var/lib/redis'
     networks:
       - nginx-proxy
-  networks:
-    nginx-proxy:
-      external: true
+networks:
+  nginx-proxy:
+    external: true
