@@ -18,11 +18,25 @@ services:
         unicorn['worker_timeout'] = 300                        #to reduce effect of network glitches
         unicorn['worker_processes'] = 3  
         nginx['listen_port'] = 80
+        gitlab_rails['ldap_enabled'] = true
+        gitlab_rails['ldap_servers'] = YAML.load <<-EOS
+         main:
+          label: 'LDAP'
+          host: 'ldap.forumsys.com'
+          port: 389
+          uid: 'sAMAccountName'     
+          bind_dn: 'ou=users,ou=guests,dc=zflexsoftware,dc=com'
+          password: 'password'
+          active_directory: false
+          base: 'dc=example,dc=com'
+          method: 'plain' 
+          EOS
        # nginx['redirect_http_to_https'] = true
        #nginx['proxy_set_headers'] = {
        #"X-Forwarded-Proto" => "https",
        #"X-Forwarded-Ssl" => "on"
        #}
+       
     expose:
       - '80'
     volumes:

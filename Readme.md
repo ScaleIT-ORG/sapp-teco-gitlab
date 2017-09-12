@@ -1,3 +1,6 @@
+<p align="center">
+  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/kristkat/custom-templates-portainer/master/stacked_wm_no_bg.png' />
+</p>
 # Creating GitLab image
 To run the GitLab Docker image, which is a monolithic image of GitLab running all the necessary services on a single container,using docker-compose.
 
@@ -41,6 +44,13 @@ memory changes.
 
 * [Documentation](https://docs.gitlab.com/omnibus/settings/backups.html)
 
+## LDAP 
+
+* Configurations that should be added to docker-compose.yml file to "GITLAB_OMNIBUS_CONFIG: |" part:
+```yml
+
+```
+* Here was taken remote [LDAP server]()
 
 
 
