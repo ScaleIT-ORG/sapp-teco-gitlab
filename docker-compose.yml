@@ -22,13 +22,13 @@ services:
         gitlab_rails['ldap_servers'] = YAML.load <<-EOS
          main:
           label: 'LDAP'
-          host: 'ldap.forumsys.com'
+          host: 'www.zflexldap.com'
           port: 389
           uid: 'sAMAccountName'     
-          bind_dn: 'cn=read-only-admin,dc=example,dc=com'
-          password: 'password'
+          bind_dn: 'cn=ro_admin,ou=sysadmins,dc=zflexsoftware,dc=com'
+          password: 'zflexpass'
           active_directory: false
-          base: 'dc=example,dc=com'
+          base: 'ou=users,ou=guests,dc=zflexsoftware,dc=com'
           method: 'plain' 
           EOS
        # nginx['redirect_http_to_https'] = true
