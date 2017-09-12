@@ -24,7 +24,7 @@ services:
           label: 'LDAP'
           host: 'www.zflexldap.com'
           port: 389
-          uid: 'sAMAccountName'     
+          uid: 'uid'     
           bind_dn: 'cn=ro_admin,ou=sysadmins,dc=zflexsoftware,dc=com'
           password: 'zflexpass'
           active_directory: false
