@@ -28,7 +28,7 @@ services:
           bind_dn: 'cn=read-only-admin,dc=example,dc=com'
           password: 'password'
           active_directory: false
-          base: 'ou=mathematicians,dc=example,dc=com'
+          base: 'dc=example,dc=com'
           method: 'plain' 
           EOS
        # nginx['redirect_http_to_https'] = true
