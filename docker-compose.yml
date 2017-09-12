@@ -25,10 +25,10 @@ services:
           host: 'ldap.forumsys.com'
           port: 389
           uid: 'sAMAccountName'     
-          bind_dn: 'ou=users,ou=guests,dc=zflexsoftware,dc=com'
+          bind_dn: 'cn=read-only-admin,dc=example,dc=com'
           password: 'password'
           active_directory: false
-          base: 'dc=example,dc=com'
+          base: 'ou=mathematicians,dc=example,dc=com'
           method: 'plain' 
           EOS
        # nginx['redirect_http_to_https'] = true

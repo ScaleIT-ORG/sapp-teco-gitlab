@@ -1,5 +1,5 @@
 <p align="center">
-  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/kristkat/custom-templates-portainer/master/stacked_wm_no_bg.png' />
+  <img title="502" heigh="200" width="200" src='https://raw.githubusercontent.com/kristkat/custom-templates-portainer/master/stacked_wm_no_bg.png' />
 </p>
 # Creating GitLab image
 To run the GitLab Docker image, which is a monolithic image of GitLab running all the necessary services on a single container,using docker-compose.
