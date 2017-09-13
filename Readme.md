@@ -47,6 +47,7 @@ memory changes.
 ## LDAP 
 
 ```yaml
+
 gitlab_rails['ldap_enabled'] = true
 gitlab_rails['ldap_servers'] = YAML.load <<-EOS 
 main:
@@ -60,6 +61,7 @@ active_directory: false   # This setting specifies if LDAP server is Active Dire
 base: ''                  # Base where we can search for users
 method: 'plain'           # Encryption method
 EOS
+
 ```
 
 * [GitLab Documentation about LDAP](https://docs.gitlab.com/ce/administration/auth/ldap.html)
