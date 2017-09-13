@@ -46,61 +46,21 @@ memory changes.
 
 ## LDAP 
 
-```yaml
-
-gitlab_rails['ldap_enabled'] = true
-gitlab_rails['ldap_servers'] = YAML.load <<-EOS 
-main:
-label: 'LDAP' 
-host: '_your_ldap_server'  # Example: 'ldap.mydomain.com'
-port: 389 # usually 636 for SSL
-uid: 'sAMAccountName' # This should be the attribute, not the value that maps to uid.
-bind_dn: '_the_full_dn_of_the_user_you_will_bind_with'
-password: '_the_password_of_the_bind_user'
-active_directory: false   # This setting specifies if LDAP server is Active Directory LDAP server.
-base: ''                  # Base where we can search for users
-method: 'plain'           # Encryption method
-EOS
-
-```
-
 * [GitLab Documentation about LDAP](https://docs.gitlab.com/ce/administration/auth/ldap.html)
 
 * Configurations in docker-compose.yml file in "GITLAB_OMNIBUS_CONFIG: |" part to make connection with LDAP server:
 
-```yaml
-gitlab_rails['ldap_enabled'] = true
-gitlab_rails['ldap_servers'] = YAML.load <<-EOS 
-main:
-label: 'LDAP' 
-host: '_your_ldap_server'  # Example: 'ldap.mydomain.com'
-port: 389 # usually 636 for SSL
-uid: 'sAMAccountName' # This should be the attribute, not the value that maps to uid.
-bind_dn: '_the_full_dn_of_the_user_you_will_bind_with'
-password: '_the_password_of_the_bind_user'
-active_directory: false   # This setting specifies if LDAP server is Active Directory LDAP server.
-base: ''                  # Base where we can search for users
-method: 'plain'           # Encryption method
-EOS
-```
+<p align="left">
+  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/kristkat/pictures/master/yml1.png' />
+</p>
+
 * In our docker-compose.yml were used following configurations to test connection between GitLab and 
 [Remote LDAP server](http://www.zflexsoftware.com/index.php/pages/free-online-ldap):
 
-```yaml
-gitlab_rails['ldap_enabled'] = true
-        gitlab_rails['ldap_servers'] = YAML.load <<-EOS
-         main:
-          label: 'LDAP'
-          host: 'www.zflexldap.com'
-          port: 389
-          uid: 'uid'     
-          bind_dn: 'cn=ro_admin,ou=sysadmins,dc=zflexsoftware,dc=com'
-          password: 'zflexpass'
-          active_directory: false
-          base: 'dc=zflexsoftware,dc=com'
-          method: 'plain' 
-          EOS
-```
+<p align="left">
+  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/kristkat/pictures/master/yml2.png' />
+</p>
+
 
 
 
