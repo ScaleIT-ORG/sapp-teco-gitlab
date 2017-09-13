@@ -50,7 +50,7 @@ memory changes.
 
 * Configurations in docker-compose.yml file in "GITLAB_OMNIBUS_CONFIG: |" part to make connection with LDAP server:
 
-```yml
+``` yml
 gitlab_rails['ldap_enabled'] = true
 gitlab_rails['ldap_servers'] = YAML.load <<-EOS 
 main:
@@ -68,7 +68,7 @@ EOS
 * In our docker-compose.yml were used following configurations to test connection between GitLab and 
 [Remote LDAP server](http://www.zflexsoftware.com/index.php/pages/free-online-ldap):
 
-```yml
+``` yml
 gitlab_rails['ldap_enabled'] = true
         gitlab_rails['ldap_servers'] = YAML.load <<-EOS
          main:
