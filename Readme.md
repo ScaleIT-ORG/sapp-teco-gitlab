@@ -1,8 +1,15 @@
 <p align="center">
-  <img title="502" heigh="200" width="200" src='https://raw.githubusercontent.com/kristkat/custom-templates-portainer/master/stacked_wm_no_bg.png' />
+  <img title="502" heigh="200" width="200" src='https://raw.githubusercontent.com/kristkat/pictures/master/logo-square.png' />
 </p>
 # Creating GitLab image
 To run the GitLab Docker image, which is a monolithic image of GitLab running all the necessary services on a single container,using docker-compose.
+(GitLab is an open source end-to-end software development platform with built-in version control, issue tracking, code review, CI/CD, and more.)
+
+## Architecture:
+<p align="center">
+  <img title="502" heigh="600" width="600" src='https://gitlab.msu.edu/help/development/gitlab_architecture_diagram.png' />
+</p>
+
 
 ## Requirements:
 * [full description here](https://docs.gitlab.com/ce/install/requirements.html)
