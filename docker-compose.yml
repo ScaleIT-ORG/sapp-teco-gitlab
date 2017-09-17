@@ -2,9 +2,9 @@
 version: '3'
 services:
   gitlab:
-    image: gitlab/gitlab-ce:latest
+    image: gitlab/gitlab-ce:9.5.4-ce.0
+    container_name: gitlab
     restart: always
-    hostname: 'gitlab.staging.teco.edu'
     environment:
        VIRTUAL_HOST: ${VIRTUAL_HOST}
        VIRTUAL_PORT: ${VIRTUAL_PORT}
@@ -40,12 +40,17 @@ services:
     expose:
       - '80'
     volumes:
-      - '/srv/business-essentials/teco_gitlab/config:/etc/gitlab'
-      - '/srv/business-essentials/teco_gitlab/logs:/var/log/gitlab'
-      - '/srv/business-essentials/teco_gitlab/data:/var/opt/gitlab'
+      - config:/etc/gitlab
+      - logs:/var/log/gitlab
+      - data:/var/opt/gitlab
     networks:
       - nginx-proxy
       
 networks:
   nginx-proxy:
     external: true
+
+volumes:
+  config:
+  logs:
+  data:
