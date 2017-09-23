@@ -35,6 +35,17 @@ memory changes.
 3. You registrate there
 4. Create projects and use great GitLab features
 
+### Local testing
+
+For local testing you can create a 'docker-compose.override.yml' which will overwrite the properties in the original docker-compose.yml. An example to set ports for the service 'gitlab':
+```yaml
+version: '3'
+services:
+  gitlab:
+    ports:
+      - "81:80"
+```
+
 ## Problems that might happen
 
 * If while connecting to gitlab.staging.teco.edu you see in browser first this :  
@@ -67,9 +78,3 @@ memory changes.
 <p align="left">
   <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/kristkat/pictures/master/yml2.png' />
 </p>
-
-
-
-
-
-	 
