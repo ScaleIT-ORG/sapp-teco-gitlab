@@ -12,7 +12,7 @@ services:
        LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
        # Add any other gitlab.rb configuration here, each on its own line
        GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab.staging.teco.edu'
+        external_url 'http://${VIRTUAL_HOST}'
         gitlab_rails['git_timeout'] = 600
         nginx['keepalive_timeout'] = 300
         unicorn['worker_timeout'] = 300                        #to reduce effect of network glitches
