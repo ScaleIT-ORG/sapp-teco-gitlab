@@ -21,8 +21,8 @@ services:
         gitlab_rails['omniauth_enabled'] = true;
         gitlab_rails['omniauth_allow_single_sign_on'] = true;
         gitlab_rails['omniauth_block_auto_created_users'] = false;
-        gitlab_rails['omniauth_auto_sign_in_with_provider'] = 'Keycloak';
-        gitlab_rails['omniauth_providers'] = [{'name'=>'openid_connect', 'args'=>{'name'=>'Keycloak', 'scope'=>['openid', 'profile'], 'response_type'=>'code', 'discovery'=>true, 'issuer'=>'${ISSUER_URL}', 'client_options'=>{'port'=>'443', 'scheme'=>'https', 'host'=>'${IDP_HOSTNAME}', 'identifier'=>'${CLIENT_ID}', 'secret'=>'${CLIENT_SECRET}', 'redirect_uri'=>'https://${VIRTUAL_HOST}/users/auth/Keycloak/callback'}}}];
+        gitlab_rails['omniauth_auto_sign_in_with_provider'] = 'Keycloak'; 
+        gitlab_rails['omniauth_providers'] = [{'name'=>'openid_connect', 'args'=>{'name'=>'Keycloak', 'scope'=>['openid', 'profile'], 'response_type'=>'code', 'discovery'=>true, 'issuer'=>'${ISSUER_URL}', 'client_options'=>{'port'=>'80', 'scheme'=>'https', 'host'=>'${IDP_HOSTNAME}', 'identifier'=>'${CLIENT_ID}', 'secret'=>'${CLIENT_SECRET}', 'redirect_uri'=>'https://${VIRTUAL_HOST}/users/auth/Keycloak/callback'}}}];
        
     expose:
       - '80'
@@ -31,9 +31,12 @@ services:
       - logs:/var/log/gitlab
       - data:/var/opt/gitlab
     networks:
+      - keycloak_services
       - nginx-proxy
       
 networks:
+  keycloak_services:
+    external: true
   nginx-proxy:
     external: true
 
