@@ -1,18 +1,13 @@
-#https://docs.gitlab.com/omnibus/docker/README.html was used as base for this file
-version: '3'
+version: '2'
 services:
   gitlab:
     build: .
     container_name: gitlab
     restart: always
     environment:
-       VIRTUAL_HOST: ${VIRTUAL_HOST}
-       VIRTUAL_PORT: ${VIRTUAL_PORT}
-       LETSENCRYPT_HOST: ${VIRTUAL_HOST}
-       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
        # Add any other gitlab.rb configuration here, each on its own line
        GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://${VIRTUAL_HOST}'
+        external_url 'http://gitlab-oauth.staging.teco.edu'
         gitlab_rails['git_timeout'] = 600
         nginx['keepalive_timeout'] = 300
         unicorn['worker_timeout'] = 300                        #to reduce effect of network glitches
@@ -26,19 +21,14 @@ services:
        
     expose:
       - '80'
+    labels:
+      rap.port: '80'
+      rap.le_host: gitlab-oauth.staging.teco.edu
+      rap.host: gitlab-oauth.staging.teco.edu
     volumes:
       - config:/etc/gitlab
       - logs:/var/log/gitlab
       - data:/var/opt/gitlab
-    networks:
-      - keycloak_services
-      - nginx-proxy
-      
-networks:
-  keycloak_services:
-    external: true
-  nginx-proxy:
-    external: true
 
 volumes:
   config:
