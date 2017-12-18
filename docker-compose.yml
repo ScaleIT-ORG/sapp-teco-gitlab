@@ -1,0 +1,51 @@
+version: '2'
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:10.2.4-ce.0
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://teco-gitlab.staging.teco.edu'
+        gitlab_rails['git_timeout'] = 600
+        nginx['keepalive_timeout'] = 300
+        unicorn['worker_timeout'] = 300                        #to reduce effect of network glitches
+        unicorn['worker_processes'] = 3
+        nginx['listen_port'] = 80    
+        gitlab_rails['ldap_enabled'] = true
+        gitlab_rails['ldap_servers'] = YAML.load <<-EOS
+         main:
+          label: 'LDAP'
+          host: 'www.zflexldap.com'
+          port: '389'
+          uid: 'uid'
+          bind_dn: 'cn=ro_admin,ou=sysadmins,dc=zflexsoftware,dc=com' 
+          password: 'zflexpass' 
+          encryption: 'plain'
+          active_directory: 'false'
+          base: 'dc=zflexsoftware,dc=com'
+          EOS
+    volumes:
+      - config:/etc/gitlab
+      - logs:/var/log/gitlab
+      - data:/var/opt/gitlab
+    ports:
+      - 11:22/tcp
+    labels:
+      rap.port: '80'
+      rap.le_host: teco-gitlab.staging.teco.edu
+      rap.host: teco-gitlab.staging.teco.edu
+      rap.client_max_body_size: 300m
+ 
+  gitlab-runner-sidecar:
+    image: gitlab/gitlab-runner:latest
+    restart: always
+    volumes:
+      - gitlab-runner-config:/etc/gitlab-runner \
+      - /var/run/docker.sock:/var/run/docker.sock \
+ 
+volumes:
+  config:
+  logs:
+  data:
+  gitlab-runner-config:
+      
+  

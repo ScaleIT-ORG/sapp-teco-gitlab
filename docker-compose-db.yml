@@ -1,0 +1,51 @@
+version: '2'
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    links:
+    - postgresql:postgresql
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://teco-gitlab.staging.teco.edu'
+        gitlab_rails['git_timeout'] = 600
+        nginx['keepalive_timeout'] = 300
+        unicorn['worker_timeout'] = 300                        #to reduce effect of network glitches
+        unicorn['worker_processes'] = 3
+        nginx['listen_port'] = 80
+        nginx['client_max_body_size'] = '300m'
+        postgresql['enable'] = false
+        gitlab_rails['db_username'] = "gitlab"
+        gitlab_rails['db_password'] = "gitlab"
+        gitlab_rails['db_host'] = "postgresql"
+        gitlab_rails['db_port'] = "5432"
+        gitlab_rails['db_database'] = "gitlabhq_production"
+        gitlab_rails['db_adapter'] = 'postgresql'
+        gitlab_rails['db_encoding'] = 'utf8'
+        #here is place for ldap
+    volumes:
+      - config:/etc/gitlab
+      - logs:/var/log/gitlab
+      - data:/var/opt/gitlab
+    ports:
+    - 11:22/tcp
+    labels:
+      rap.port: '80'
+      rap.le_host: teco-gitlab.staging.teco.edu
+      rap.host: teco-gitlab.staging.teco.edu
+      rap.client_max_body_size: 300m
+      
+  postgresql:
+    restart: always
+    image: postgres:9.6.2-alpine   #use PostgreSQL 9.6 version
+    environment:
+    - POSTGRES_USER=gitlab
+    - POSTGRES_PASSWORD=gitlab
+    - POSTGRES_DB=gitlabhq_production
+    volumes:
+    - postgresql:/var/lib/postgresql:rw
+    
+volumes:
+  postgresql:
+  config:
+  logs:
+  data:
