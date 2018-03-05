@@ -40,6 +40,21 @@ memory changes.
 3. You registrate there (admin account has an username "root" and a password that you typed at the beginning)
 4. Create projects and use great GitLab features
 
+## Adding Environment Variables
+
+Due to the fact that docker-compose seems not to support more than 1 env variable if you use multi line variables, you can use the "env_file" paramter.
+
+```yml
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:10.5.2-ce.0
+    env_file:
+      - ./.env 
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://testing.teco.edu'
+```
+
 ## Problems that might happen
 
 1. If while connecting to teco-gitlab.staging.teco.edu you see in browser first this :  
