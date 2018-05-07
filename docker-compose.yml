@@ -4,7 +4,7 @@ services:
     image: gitlab/gitlab-ce:10.2.4-ce.0
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://teco-gitlab.staging.teco.edu'
+        external_url 'https://gitlab.example.com'
         gitlab_rails['git_timeout'] = 600
         nginx['keepalive_timeout'] = 300
         unicorn['worker_timeout'] = 300                        #to reduce effect of network glitches
@@ -31,8 +31,8 @@ services:
       - 11:22/tcp
     labels:
       rap.port: '80'
-      rap.le_host: teco-gitlab.staging.teco.edu
-      rap.host: teco-gitlab.staging.teco.edu
+      rap.le_host: gitlab.example.com
+      rap.host: gitlab.example.com
       rap.client_max_body_size: 300m
  
   gitlab-runner-sidecar:
