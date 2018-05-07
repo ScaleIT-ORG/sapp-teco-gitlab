@@ -80,8 +80,7 @@ services:
       - ./.env 
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'https://gitlab.example.com'
-	
+        external_url 'https://gitlab.example.com'	
 ```
 .env.default file:
 ```
