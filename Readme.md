@@ -36,15 +36,16 @@ memory changes.
 2. 11
 3. 443
 
+* [full description here](https://docs.gitlab.com/ce/install/requirements.html)
+
 ## Installation
 1. `docker-compose up -d `
 2. Type in browser `gitlab.example.com` and you'll see the GitLab login page
 3. You register there (admin account has a username "root" and a password that you typed at the beginning)
 4. Create projects and use great GitLab features
 
-* [full description here](https://docs.gitlab.com/ce/install/requirements.html)
 
-## Problems that might happen
+### Problems that might happen
 
 1. If while connecting to `gitlab.example.com` you see in browser first this :  
 
