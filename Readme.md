@@ -1,5 +1,5 @@
 <p align="center">
-  <img title="502" heigh="200" width="200" src='https://raw.githubusercontent.com/kristkat/pictures/master/logo-square.png' />
+  <img title="502" heigh="200" width="200" src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/logo-square.png' />
 </p>
 
 # Gitlab Image
@@ -50,12 +50,12 @@ memory changes.
 1. If while connecting to `gitlab.example.com` you see in browser first this :  
 
  <p align="center">
-  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/kristkat/pictures/master/502_1.png' />
+  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/Screenshots/502_1.png' />
  </p> 
  Then in some time this :
  
  <p align="center">
-  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/kristkat/pictures/master/502_2.png' />
+  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/Screenshots/502_2.png' />
  </p>
  
 Then you should wait approximately 5 minutes.
