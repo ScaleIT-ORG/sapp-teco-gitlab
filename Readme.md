@@ -1,5 +1,9 @@
-
-  <img title="logo" src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/logo-square.png' width="20%"/>
+<p align="center">
+  <img title="logo"
+       src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/logo-square.png' width="20%"
+       align="middle"/>
+</p>
+<img align="left" src="https://raw.githubusercontent.com/ScaleIT-Org/media-ressources/master/logo/scaleit-logo.png" width="20%"/>
 
 
 # Gitlab Image [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -101,6 +105,19 @@ To backup application :
 docker exec -t <your container name> gitlab-rake gitlab:backup:create
 ```
 * [Backups Documentation](https://docs.gitlab.com/omnibus/settings/backups.html)
+* [Creating backups in Docker containers ](https://docs.gitlab.com/omnibus/settings/backups.html#creating-backups-for-gitlab-instances-in-docker-containers)
+
+## Restore
+To restore a backup, you will need to restore /etc/gitlab/gitlab-secrets.json (for Omnibus packages) or /home/git/gitlab/.secret (for installations from source).
+Pay attention, that :
+1. The restore target directories are empty. Otherwise GitLab will attempt to move these directories before restoring the new data and this would cause an error.
+2. The backup tarball are available in the backup location (default location is /var/opt/gitlab/backups).
+
+The restore task can be run from host using the command:
+```
+docker exec -it <name of container> gitlab-rake gitlab:backup:restore
+```
+* [Restore Documentation](https://docs.gitlab.com/ce/raketasks/backup_restore.html#restore)
 
 ## LDAP 
 
