@@ -1,17 +1,17 @@
-<p align="center">
-  <img title="502" heigh="200" width="200" src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/logo-square.png' />
-</p>
 
-# Gitlab Image
+  <img title="logo" src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/logo-square.png' width="20%"/>
+
+
+# Gitlab Image [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This is a monolithic image of GitLab running all the necessary services in a single container, using docker-compose.
 [GitLab is an open source end-to-end software development platform with built-in version control, issue tracking, code review, CI/CD, and more.](https://about.gitlab.com)
 
 ## Architecture:
 
-<p align="center">
-  <img title="502" heigh="600" width="600" src='https://gitlab.msu.edu/help/development/gitlab_architecture_diagram.png' />
-</p>
+
+  <img title="architecture" width="50%" src='https://gitlab.msu.edu/help/development/gitlab_architecture_diagram.png' />
+
 
 * MySQL or PostgreSQL are for persistent database information (e.g. users, permissions, issues, other metadata)
 * Sidekiq is used as a job queue
@@ -49,14 +49,14 @@ memory changes.
 
 1. If while connecting to `gitlab.example.com` you see in browser first this :  
 
- <p align="center">
-  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/Screenshots/502_1.png' />
- </p> 
+ 
+  <img title="502_1" width="50%" src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/Screenshots/502_1.png' />
+ 
  Then in some time this :
  
- <p align="center">
-  <img title="502" heigh="600" width="600" src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/Screenshots/502_2.png' />
- </p>
+ 
+  <img title="502_2"  width="50%" src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/Screenshots/502_2.png' />
+ 
  
 Then you should wait approximately 5 minutes.
 
