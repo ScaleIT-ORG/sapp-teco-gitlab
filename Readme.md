@@ -2,8 +2,10 @@
   <img title="logo"
        src='https://raw.githubusercontent.com/ScaleIT-Org/sapp-teco-gitlab/master/Resources/logo-square.png' width="20%"
        align="middle"/>
+  <img  src="https://raw.githubusercontent.com/ScaleIT-Org/media-ressources/master/logo/scaleit-logo.png"
+       width="20%"/>
 </p>
-<img align="left" src="https://raw.githubusercontent.com/ScaleIT-Org/media-ressources/master/logo/scaleit-logo.png" width="20%"/>
+
 
 
 # Gitlab Image [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
